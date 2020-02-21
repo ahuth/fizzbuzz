@@ -106,3 +106,13 @@ type Test_FizzBuzzNth = [
   Eq<FizzBuzzNth<_15>, "FizzBuzz">,
   Eq<FizzBuzzNth<_16>, _16>
 ];
+
+type Unshift<Element, List extends Array<any>> = Parameters<
+  (e: Element, ...list: List) => any
+>;
+
+type Test_Unshift = [
+  Eq<Unshift<1, []>, [1]>,
+  Eq<Unshift<2, [1]>, [2, 1]>,
+  Eq<Unshift<'hello', [2, 1]>, ['hello', 2, 1]>,
+];
