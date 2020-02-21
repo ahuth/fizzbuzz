@@ -116,3 +116,18 @@ type Test_Unshift = [
   Eq<Unshift<2, [1]>, [2, 1]>,
   Eq<Unshift<'hello', [2, 1]>, ['hello', 2, 1]>,
 ];
+
+type FizzBuzzUpTo<N, Output extends any[] = []> = {
+  output: Output;
+  recurse: FizzBuzzUpTo<Decrement<N>, Unshift<FizzBuzzNth<N>, Output>>;
+}[N extends _0 ? "output" : "recurse"];
+
+type Test_FizzBuzzUpTo = [
+  Eq<
+    FizzBuzzUpTo<_16>,
+    [
+      _1, _2, "Fizz", _4, "Buzz", "Fizz", _7, _8,
+      "Fizz", "Buzz", _11, "Fizz", _13, _14, "FizzBuzz", _16
+    ]
+  >
+];
