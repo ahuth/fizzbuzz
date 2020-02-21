@@ -44,3 +44,22 @@ type Test_Subtract = [
   Eq<Subtract<_1, _2>, NAN>, // Passes
   Eq<Subtract<_9, _2>, _3>, // Fails
 ];
+
+type IsDivisibleBy<A, B> = {
+  a_eq_0: true,
+  a_lt_0: false,
+  recurse: IsDivisibleBy<Subtract<A, B>, B>,
+}[
+  A extends NAN
+    ? 'a_lt_0'
+    : A extends _0
+      ? 'a_eq_0'
+      : 'recurse'
+];
+
+type Test_IsDivisibleBy = [
+  Eq<IsDivisibleBy<_4, _2>, true>,
+  Eq<IsDivisibleBy<_6, _3>, true>,
+  Eq<IsDivisibleBy<_3, _2>, false>,
+  Eq<IsDivisibleBy<_5, _3>, false>,
+];
