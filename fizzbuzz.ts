@@ -63,3 +63,16 @@ type Test_IsDivisibleBy = [
   Eq<IsDivisibleBy<_3, _2>, false>,
   Eq<IsDivisibleBy<_5, _3>, false>,
 ];
+
+type And<A, B> = A extends true
+  ? B extends true
+    ? true
+    : false
+  : false;
+
+type Test_And = [
+  Eq<And<true, true>, true>,
+  Eq<And<true, false>, false>,
+  Eq<And<false, true>, false>,
+  Eq<And<false, false>, false>,
+];
