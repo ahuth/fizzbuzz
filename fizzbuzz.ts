@@ -98,12 +98,12 @@ type FizzBuzzNth<N> = IsDivisibleBy15<N> extends true
 type Test_FizzBuzzNth = [
   Eq<FizzBuzzNth<_1>, _1>,
   Eq<FizzBuzzNth<_2>, _2>,
-  Eq<FizzBuzzNth<_3>, "Fizz">,
+  Eq<FizzBuzzNth<_3>, 'Fizz'>,
   Eq<FizzBuzzNth<_4>, _4>,
-  Eq<FizzBuzzNth<_5>, "Buzz">,
-  Eq<FizzBuzzNth<_6>, "Fizz">,
+  Eq<FizzBuzzNth<_5>, 'Buzz'>,
+  Eq<FizzBuzzNth<_6>, 'Fizz'>,
   Eq<FizzBuzzNth<_14>, _14>,
-  Eq<FizzBuzzNth<_15>, "FizzBuzz">,
+  Eq<FizzBuzzNth<_15>, 'FizzBuzz'>,
   Eq<FizzBuzzNth<_16>, _16>
 ];
 
@@ -120,14 +120,14 @@ type Test_Unshift = [
 type FizzBuzzUpTo<N, Output extends any[] = []> = {
   output: Output;
   recurse: FizzBuzzUpTo<Decrement<N>, Unshift<FizzBuzzNth<N>, Output>>;
-}[N extends _0 ? "output" : "recurse"];
+}[N extends _0 ? 'output' : 'recurse'];
 
 type Test_FizzBuzzUpTo = [
   Eq<
     FizzBuzzUpTo<_16>,
     [
-      _1, _2, "Fizz", _4, "Buzz", "Fizz", _7, _8,
-      "Fizz", "Buzz", _11, "Fizz", _13, _14, "FizzBuzz", _16
+      _1, _2, 'Fizz', _4, 'Buzz', 'Fizz', _7, _8,
+      'Fizz', 'Buzz', _11, 'Fizz', _13, _14, 'FizzBuzz', _16
     ]
   >
 ];
